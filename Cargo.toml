@@ -8,7 +8,49 @@ overflow-checks = true
 lto = "fat"
 codegen-units = 1
 
+[profile.release.build-override]
+opt-level = 3
+incremental = false
+codegen-units = 1
+
+[profile.release.package."*"]
+opt-level = 3
+incremental = false
+codegen-units = 1
+
+[profile.dev]
+opt-level = 0
+debug = true
+incremental = true
+codegen-units = 256
+
+[profile.test]
+opt-level = 0
+debug = true
+incremental = true
+codegen-units = 256
+
 [workspace.dependencies]
-anchor-lang = "0.29.0"
-anchor-spl = "0.29.0"
+anchor-lang = { version = "0.29.0", features = ["init-if-needed"] }
+anchor-spl = { version = "0.29.0", features = ["token", "metadata"] }
 solana-program = "1.17.17"
+solana-sdk = "1.17.17"
+borsh = "0.10.3"
+thiserror = "1.0.50"
+num-derive = "0.4.0"
+num-traits = "0.2.17"
+arrayref = "0.3.7"
+bytemuck = { version = "1.14.0", features = ["derive"] }
+zeroize = { version = "1.6.0", features = ["derive"] }
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+authors = ["Your Name <your.email@example.com>"]
+description = "Solana SPL Reflection Token"
+license = "Apache-2.0"
+repository = "https://github.com/yourusername/solana-spl-reflection-token"
+readme = "README.md"
+
+[workspace.metadata]
+docs.rs = { targets = ["x86_64-unknown-linux-gnu"] }
